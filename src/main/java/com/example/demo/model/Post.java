@@ -2,11 +2,26 @@ package com.example.demo.model;
 
 import java.util.Date;
 
-public class Post {
-    private final String text;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.io.Serializable;
+
+@Entity
+public class Post implements Serializable {
+    private String text;
+    @Column(nullable = false)
     private Integer likes;
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date creationDate;
+    @Id
+    @GeneratedValue
     private Long id;
+
+    public Post() {
+
+    }
 
     public Post(Long id, String text, Date creationDate) {
         this.text = text;

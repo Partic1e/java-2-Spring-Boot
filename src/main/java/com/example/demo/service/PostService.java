@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Post;
+import com.example.demo.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,9 +12,11 @@ import java.util.List;
 @Service
 public class PostService {
     List<Post> posts = new ArrayList<>();
+    @Autowired
+    PostRepository postRepository;
 
-    public List<Post> listAllPosts(){
-        return posts;
+    public Iterable<Post> listAllPosts(){
+        return postRepository.findAll();
     }
 
     {
@@ -24,5 +28,7 @@ public class PostService {
     public void create(String text) {
         long newId = posts.size() + 1;
         posts.add(new Post(newId,text, new Date()));
+        Post post = new Post(null, text, new Date());
+        postRepository.save(post);
     }
 }

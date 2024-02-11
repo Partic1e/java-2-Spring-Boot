@@ -16,12 +16,13 @@ public class PostService {
     }
 
     {
-        posts.add(new Post("some text", new Date()));
-        posts.add(new Post("same text", new Date()));
-        posts.add(new Post("111",new Date()));
+        posts.add(new Post(1L, "some text", new Date()));
+        posts.add(new Post(2L, "same text", new Date()));
+        posts.add(new Post(3L, "111",new Date()));
     }
 
     public void create(String text) {
-        posts.add(new Post(text, new Date()));
+        long newId = posts.size() + 1;
+        posts.add(new Post(newId,text, new Date()));
     }
 }

@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
+
 @Controller
 public class PostsViewController {
 
     @Autowired
     PostService postsService;
+
+    private Date creationDate;
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String list(Model model) {
